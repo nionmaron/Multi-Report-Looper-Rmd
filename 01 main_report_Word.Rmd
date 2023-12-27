@@ -1,0 +1,140 @@
+---
+title: "Name of Report"
+output:
+  officedown::rdocx_document:
+    plots:
+      style: Normal
+      align: center
+      caption:
+       style: Image Caption
+       pre: 'Figure '
+       sep: ': '
+    #reference_docx: template_24.docx
+    page_size:
+      width: 8.3
+      height: 11.7
+      orient: "portrait"
+    page_margins:
+      bottom: 0.5
+      top: 0.5
+      right: 0.5
+      left: 0.5
+      header: 0.5
+      footer: 0.5
+      gutter: 0
+    reference_num: true
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+```{r setup, include=FALSE}
+
+knitr::opts_chunk$set(echo = TRUE)
+  library(flexdashboard)
+  library(readxl)  
+  library(ggplot2)
+  library(tidyverse)
+  library(DT)
+  library(data.table)
+  library(lubridate)
+  library(dplyr)
+  library(knitr)
+  library(officedown)
+  library(officer)
+  library(tidyverse)
+  library(broom)
+  library(flextable)
+  library(readxl)
+  library(openxlsx)
+  
+# set chunks defaults
+  knitr::opts_chunk$set(
+    echo       = FALSE,
+    message    = FALSE,
+    warning    = FALSE
+    )
+  
+# set flextable defaults
+  knitr::opts_chunk$set(echo = TRUE, fig.cap = TRUE)
+    set_flextable_defaults(
+    font.family = "Arial", font.size = 9, 
+    theme_fun = "theme_vanilla",
+    big.mark="", table.layout="autofit")
+    
+```
+
+
+
+```{r echo=FALSE}
+run_pagebreak()
+```
+
+
+# Report content 01
+
+
+
+```{r echo=FALSE}
+run_pagebreak()
+```
+
+# Report content 02
+
+
+```{r echo=FALSE}
+run_pagebreak()
+```
+
+
+# Report content Lopping
+
+```{r, include=FALSE}
+# SETUP PARA PERMITIR LOPPING
+BOSS_MODE <- FALSE
+options(knitr.duplicate.label = "allow")
+```
+
+
+```{r echo=FALSE,results="asis"}
+run_pagebreak()
+
+# Definir a data de hoje
+hoje <- Sys.Date()
+
+# Definir a data de 5 dias atrás
+cinco_dias_atras <- hoje - days(5)
+
+# Criar sequência de datas
+sequencia_datas <- seq.Date(cinco_dias_atras, hoje, by="day")
+
+```
+
+
+```{r LOOPING REPORT, echo=FALSE, results="asis"}
+# Inicio do Lopping
+for (i in sequencia_datas) {
+#params <- list(crypto:"Stellar")
+params <- list(params03 = i)
+res <- knitr::knit_child('02 standard_report_Word.Rmd', quiet = TRUE)
+cat(res, sep = '\n')
+}
+
+```
+
+# INDEX {#index}
+
+
+End of report
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,59 @@
+---
+params:
+    params01: "Title with lopping report"
+    params02: " Test test"
+    params03: "2021-07-28"
+
+output:
+  officedown::rdocx_document:
+    plots:
+      style: Normal
+      align: center
+      caption:
+       style: Image Caption
+       pre: 'Figure '
+       sep: ': '
+    
+    #reference_docx: template.docx
+    page_size:
+      width: 8.3
+      height: 11.7
+      orient: "portrait"
+    page_margins:
+      bottom: 0.5
+      top: 0.5
+      right: 0.5
+      left: 0.5
+      header: 0.5
+      footer: 0.5
+      gutter: 0
+    reference_num: true
+    
+---
+  
+
+```{r setup, include=FALSE}
+library(officedown)
+library(officer)
+library(ggplot2)
+library(knitr)
+
+```
+
+```{r READ_SETUP_01, include=FALSE}
+# Parametros 
+title_text  <- params$params01
+description <- params$params02
+date_params <- params$params03
+
+```
+
+`r ftext(paste0(title_text))`
+
+`r ftext(paste0("Report compiled with the date of: ",as.Date(date_params)))`
+
+
+
+`r fpar("-",run_pagebreak())`
+
+
