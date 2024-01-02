@@ -91,7 +91,7 @@ run_pagebreak()
 
 ```{r, include=FALSE}
 # SETUP PARA PERMITIR LOPPING
-BOSS_MODE <- FALSE
+#BOSS_MODE <- FALSE
 options(knitr.duplicate.label = "allow")
 ```
 
